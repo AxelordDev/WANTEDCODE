@@ -1,0 +1,9 @@
+///Gravity
+{
+gravity_direction = 270;
+if place_free(x,y-1)
+    gravity = 3.0
+else 
+    gravity = 0.5;
+if (vspeed > 12) vspeed = 12; 
+}
