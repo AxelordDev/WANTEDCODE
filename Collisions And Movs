@@ -1,0 +1,68 @@
+///Colision & Movimientos
+var keyLeft, keyRight, keyJump, keyJumpRelease, keyLeftRelease, keyRightRelease;
+
+keyLeft         = keyboard_check_pressed(ord('A'));
+keyRight        = keyboard_check_pressed(ord('D'));
+
+keyJump         = keyboard_check_pressed(ord('W'));
+keyJumpRelease  = keyboard_check_released(ord('W'));
+
+//Colision Comprobada
+intColLeft  = place_meeting(x - 1, y, objBlock);
+intColRight = place_meeting(x + 1, y, objBlock);
+bolGround   = (place_meeting(x, y + 1, objBlock));
+
+intMove = keyLeft + keyRight;
+
+//Friccion Y Aceleracion(DEFINIR)
+if (!bolGround)
+{
+    intTempAcc  = intAirAcc;
+    intTempFric = intAirFric;
+}
+else
+{
+    intTempAcc  = intGroundAcc;
+    intTempFric = intGroundFric;
+}
+
+//Velocidad Horizontal
+if (intMove != 0) intVX = scrApproach(intVX, intVXMax * intMove, intTempAcc);
+else intVX = scrApproach(intVX, intVXMax * intMove, intTempFric);
+
+//Velocidad Vertical
+if (!bolGround)
+{
+    if intVY = scrApproach(intVY, intVYMax, intGravityNorm);
+}
+
+//Salto
+if (keyJump && bolGround) intVY = -intVYMax;
+
+//Liberacion de tecla de salto
+if (keyJumpRelease)
+{
+    if(intVY < 0) intVY *= 0.5;
+}
+
+//Colision Horizontal
+repeat(abs(intVX))
+{
+    //Cuesta Arriba
+    if (place_meeting(x + sign(intVX), y, objBlock)) && place_meeting(x + sign(intVX), y - 1, objBlock) && !place_meeting(x + sign(intVX), y - 2, objBlock) y =- 2;
+    else if (place_meeting(x + sign(intVX), y, objBlock)) &&  !place_meeting(x + sign(intVX), y - 1, objBlock)
+    
+    //Cuesta Abajo
+    if (!place_meeting(x + sign(intVX), y, objBlock)) && !place_meeting(x + sign(intVX), y + 1, objBlock) && !place_meeting(x + sign(intVX), y + 2, objBlock) && place_meeting(x + sign(intVX), y + 3, objBlock) y =+ 2;
+    else if (!place_meeting(x + sign(intVX), y, objBlock)) && !place_meeting(x + sign(intVX), y + 1, objBlock) && !place_meeting(x + sign(intVX), y + 2, objBlock)
+    
+    if (!place_meeting(x + sign(intVX), y, objBlock))
+    {
+        x += sign(intVX)
+    }
+    else
+    {
+        intVX = 0;
+        break;
+    }
+}
